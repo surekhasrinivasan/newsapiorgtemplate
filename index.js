@@ -14,21 +14,19 @@ $(document).ready(function(){
                       document.getElementById('selection').appendChild(source);
                   }
                 } 
-         }
-          
-    })
+            }
+        });
     $('#source').submit(function(event){
         event.preventDefault();
         //alert(document.getElementById("selection").value);
         var sourceId = document.getElementById("selection").value;
-        console.log(sourceId);
+        //console.log(sourceId);
         $.ajax({
           method: "GET",
           url: "https://newsapi.org/v2/top-headlines",
           data: { sources:sourceId, apiKey:APIKEY},
-          //console.log(data);
           success:function(data){
-              if(data.status === "ok"){
+            if(data.status === "ok"){
                   console.log(data);
                  }
                 for (var i=0; i < data.articles.length; i++){
@@ -37,10 +35,10 @@ $(document).ready(function(){
                       //console.log(data.articles[i].title);
                       articles.innerHTML = data.articles[i].title;
                       document.getElementById('List').appendChild(articles);
-                  }
-          }
-        })
+                }
+            }
+        });
                  
-    })
+    });
     
-})
+});
