@@ -20,17 +20,21 @@ $(document).ready(function(){
         event.preventDefault();
         //alert(document.getElementById("selection").value);
         var sourceId = document.getElementById("selection").value;
-        //console.log(sourceId);
+        var articles = document.getElementById('List');
+        while(articles.firstChild){
+            articles.removeChild(articles.firstChild);
+        }
         $.ajax({
           method: "GET",
           url: "https://newsapi.org/v2/top-headlines",
           data: { sources:sourceId, apiKey:APIKEY},
           success:function(data){
             if(data.status === "ok"){
-                  console.log(data);
+                  //console.log(data);
                  }
                 for (var i=0; i < data.articles.length; i++){
                       var articles = document.createElement("LI");
+                      //alert(data.articles.length);
                       articles.setAttribute("value", data.articles[i].title);
                       //console.log(data.articles[i].title);
                       articles.innerHTML = data.articles[i].title;
