@@ -20,7 +20,7 @@ $(document).ready(function(){
         event.preventDefault();
         //alert(document.getElementById("selection").value);
         var sourceId = document.getElementById("selection").value;
-        var articles = document.getElementById('List');
+        var articles = document.getElementById('list');
         while(articles.firstChild){
             articles.removeChild(articles.firstChild);
         }
@@ -34,11 +34,11 @@ $(document).ready(function(){
                  }
                 for (var i=0; i < data.articles.length; i++){
                       var articles = document.createElement("LI");
-                      //alert(data.articles.length);
-                      articles.setAttribute("value", data.articles[i].title);
-                      //console.log(data.articles[i].title);
-                      articles.innerHTML = data.articles[i].title;
-                      document.getElementById('List').appendChild(articles);
+                      var description = document.createElement("LI");
+                      articles.innerHTML = `<a href ="${data.articles[i].url}">${data.articles[i].title}</a>`;
+                      description.innerHTML = data.articles[i].description;
+                      document.getElementById('list').appendChild(articles);
+                      document.getElementById('list').appendChild(description);
                 }
             }
         });
